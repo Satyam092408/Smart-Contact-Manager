@@ -1,0 +1,17 @@
+databases:
+  - name: smartcontactmanager_mysql
+    databaseName: smart_contact_manager
+    user: scm_admin
+    plan: free  # Free tier MySQL
+
+services:
+  - type: web
+    name: smart-contact-manager
+    runtime: java
+    buildCommand: ./mvnw clean package
+    startCommand: java -jar target/*.jar
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SERVER_PORT
+        value: 8080
